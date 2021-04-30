@@ -1,0 +1,70 @@
+<template>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand pl-3 d-flex justify-content-center text-center" href="#">
+      <img class=" align-self-center mx-2" src="/images/logo.png" width="50" height="50" alt="" /> <span style="font-weight: 900;
+    font-family: monospace;
+    font-variant: all-small-caps;
+    font-size: 30px;">Livreur-User</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div v-if="!store.state.the_user" class="collapse navbar-collapse form-inline" id="navbarNav">
+      <ul class="navbar-nav navnav">
+        <li class="nav-item active">
+          <a class="nav-link" @click="store.methodes.logout">
+            Logout <span class="sr-only">(current)</span></a
+          >
+        </li>
+      </ul>
+    </div>
+    <div v-if="store.state.userconected || store.state.livreurconected" class="collapse navbar-collapse form-inline" id="navbarNav">
+      <ul class="navbar-nav navnav">
+        <li class="nav-item active">
+          <a class="nav-link" @click="store.methodes.logout">
+            Logout <span class="sr-only">(current)</span></a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+</template>
+
+<script>
+import { inject } from "vue";
+export default {
+  setup() {
+    const store = inject("store");
+    return { store };
+  },
+};
+</script>
+ 
+<style>
+.nav-link {
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+  .navnav {
+    margin-left: 45vw;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .navnav {
+    margin-left: 47vw;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .navnav {
+    margin-left: 75vw;
+  }
+}
+</style>
