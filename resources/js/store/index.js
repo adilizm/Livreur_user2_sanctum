@@ -8,8 +8,8 @@ const state = reactive({
     livreurconected: false,
 
     user: {
-        email: "",
-        password: "",
+        email: "adilizm@izm.com",
+        password: "123123",
     },
     new_user: {
         name: "asadd",
@@ -46,7 +46,7 @@ const methodes = {
     backToLogin() {
         state.create_new_account = false;
     },
-    registerNewUser() {
+   async registerNewUser() {
         var email_validation = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
         console.log("register new user is called");
         state.new_user.register_user_is_valide = true;
@@ -83,6 +83,7 @@ const methodes = {
             };
  // when even you get an 419 or 404 error code check the url and csrf  even if url works fine on postman
             console.log("3laaaaaaaaaaaaaaaaaaach", info);
+            await axios.get('/api/gg').then(res=>console.log(res)) // initialise to avoid the bug
             axios
                 .post("/api/register",info)
                 .then(
@@ -178,8 +179,8 @@ const methodes = {
             .catch((error) => {});
     },
 
-    saveNewCategory(e) {
-        e.preventDefault();
+    saveNewCategory() {
+        
         const config = {
             headers: {
                 "content-type": "multipart/form-data",
@@ -196,15 +197,20 @@ const methodes = {
             .then((res) => {
                 console.log("categoreis ", res);
                 methodes.getCategoreis();
+                state.new_category.name='',
+                state.new_category.description='',
+                state.new_category.image=false
             })
             .catch((error) => {
                 console.log("there is an error");
             });
     },
     onChange(e) {
+      
         state.new_category.image = e.target.files[0];
-        console.log("imege changed = ", state.new_category.image);
-    },
+      //  console.log("e = ", e);
+    
+},
     showOrders() {
         state.showorders = true;
         state.showCategoreis = false;

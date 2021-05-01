@@ -79,7 +79,7 @@
                   placeholder="description"
                 />
               </div>
-              <div class="form-group">
+              <div class="form-group" ref="input_image">
                 <label for="formGroupExampleInput3">image</label>
                 <input
                   type="file"
@@ -109,9 +109,10 @@
                 </button>
                 <button
                   type="button"
-                  @click="store.methodes.saveNewCategory"
+                  @click="gg"
                   class="btn btn-success"
                   data-dismiss="modal"
+                 
                 >
                   Enregistrer
                 </button>
@@ -130,6 +131,12 @@ export default {
   setup() {
     const image = ref(null);
     const store = inject("store");
+    const input_image = ref(null)
+const gg = ()=>{
+  console.log('Emm nice');
+  store.methodes.saveNewCategory()
+  console.log('Emm nice2');
+}
 
     onMounted(() => {
       store.methodes.getCategoreis();
@@ -145,7 +152,7 @@ export default {
     //this is to show image before sent to database
 
     function readURL(image) {
-      if (image.value.files && image.value.files[0]) {
+      if (image.value.files && image.value.files[0] && store.state.new_category.image) {
         var reader = new FileReader();
         reader.onload = function (e) {
           document
@@ -153,9 +160,12 @@ export default {
             .setAttribute("src", e.target.result);
         };
         reader.readAsDataURL(image.value.files[0]); // convert to base64 string
+      }else{
+      
+        console.log('this is the file',image)
       }
     }
-    return { store, image };
+    return { store, image ,gg,input_image};
   },
 };
 </script>
