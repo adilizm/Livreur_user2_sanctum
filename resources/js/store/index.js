@@ -84,7 +84,7 @@ const methodes = {
  // when even you get an 419 or 404 error code check the url and csrf  even if url works fine on postman
             console.log("3laaaaaaaaaaaaaaaaaaach", info);
             axios
-                .post("api/register",info)
+                .post("/api/register",info)
                 .then(
                     (response) => {
                         (state.new_user.name = ""),

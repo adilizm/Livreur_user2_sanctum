@@ -31,7 +31,6 @@ class AuthController  extends ErrorAndSuccesController
 
     public function signup(Request $request)
     {
-   
     
          $request['Role']='cliente';
         $validator = Validator::make($request->all(), [

@@ -18082,7 +18082,7 @@ var methodes = {
       }; // when even you get an 419 or 404 error code check the url and csrf  even if url works fine on postman
 
       console.log("3laaaaaaaaaaaaaaaaaaach", info);
-      axios.post("api/register", info).then(function (response) {
+      axios.post("/api/register", info).then(function (response) {
         state.new_user.name = "", state.new_user.email = "", state.new_user.password = "", state.new_user.confirm_password = "", state.new_user.register_user_error = "", state.new_user.register_user_is_valide = true, state.new_user.register_user_sucess = true, state.create_new_account = false, console.log("registred by sanctom res = ", response);
       }, function (error) {
         state.new_user.register_user_is_valide = false;
