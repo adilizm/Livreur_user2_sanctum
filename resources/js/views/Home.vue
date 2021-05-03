@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    <!-- alert to show errors if there is one -->
+<div ref="alert"></div>
     <div
       v-if="!store.state.new_user.register_user_is_valide"
       class="alert alert-danger alert-dismissible fade show my-3"
@@ -17,24 +16,6 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-
-    <div
-      v-if="!store.state.login_info"
-      class="alert alert-warning alert-dismissible fade show my-3"
-      role="alert"
-    >
-      <strong>Attention!!</strong> Les informations d'identification fournies
-      sont incorrectes
-      <button
-        type="button"
-        class="close"
-        data-dismiss="alert"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
     <div
       v-if="store.state.new_user.register_user_sucess"
       class="alert alert-success alert-dismissible fade show my-3"
@@ -50,142 +31,132 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+  <div class="flex justify-center items-center">
 
-    <div v-if="!store.state.create_new_account" class="row">
-      <div
-        class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-12 align-self-center"
-      >
-        <div class="Welcome justify-content-center text-center my-5">
-          Welcome!
-        </div>
-        <div
-          class="justify-content-center text-center d-flex align-items-center my-3"
+    <div
+      class="shadow-md overflow-hidden flex justify-center m-8 p-0 rounded-2xl">
+      <!-- div image left side -->
+      <div class="text-center text-gray-900 font-bold m-8 hidden md:block">
+        <!-- image login -->
+        <img src="/images/login.png" alt="login mage" />
+        <span class="text-gray-800 font-extrabold"
+          >© 2020 Tous droits réservés.</span
         >
-          <span class="px-2">Email </span>
-          <input
-            class="form-control max-50 ml-auto"
-            type="email"
-            v-model="store.state.user.email"
-            name=""
-            id=""
-           
-          />
+      </div>
+      <!-- div content right side -->
+      <div class="bg-blue-100 px-12 pb-20 sm:w-auto">
+        <!-- hello good morning div -->
+        <div class="ml-0 mr-3 transition ease-in-out transform hover:translate-x-4">
+          <span class="text-blue-600 text-lg font-bold block mt-3 -mb-2 "
+            >Bonjour!</span
+          >
+          <span class="text-blue-900 text-xl font-bold block -mt-3 mb-3"
+            >Bon Retour</span
+          >
         </div>
-        <div
-          class="justify-content-center text-center d-flex align-items-center my-3"
-        >
-          <span class="px-2">Password </span>
-          <input
-            class="form-control max-50 ml-auto"
-            v-model="store.state.user.password"
-            type="password"
-            name=""
-            id=""
-          />
-        </div>
-        <div class="d-flex justify-content-between">
-          <div class="connect">
-            <span
-              class="px-3 mx-3 btn btn-info"
-              @click="store.methodes.createNewAccount"
-              >create new account</span
+        <!-- login form  -->
+        <div  v-if="!store.state.create_new_account" class="text-center">
+          <div class="mt-8">
+            <span class="font-bold text-blue-900 uppercase"
+              >connectez-vous</span
             >
+          </div>
+          <div class="mt-3">
+            <!--    <label class="flex justify-start left-0 z-50" for="Email">Email</label> -->
+            <input
+              type="text"
+              class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
+              placeholder="Email"
+              v-model="store.state.user.email"
+            />
+          </div>
+          <div class="mt-3">
+            <!--  <label class="flex justify-start left-0 z-50" for="Email">Password</label> -->
+            <input
+              type="password"
+              class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
+              placeholder="Mot de pass"
+              v-model="store.state.user.password"
+            />
+          </div>
+          <!-- login and create account buttons -->
+          <div>
             <button
-              class="btn btn-primary float-right"
+              class="bg-blue-600 text-white font-bold border-blue-600 border-opacity-20 py-1 px-10 mt-7 rounded-xl hover:bg-indigo-800 transition ease-in-out transform hover:scale-105"
               @click="store.methodes.login"
             >
-              login
+              Connexion
+            </button>
+            <button
+              class="block text-blue-700 py-1 px-10 mt-3 transition ease-in-out transform hover:scale-105 hover:scale-x-110"
+              @click="store.methodes.createNewAccount"
+            >
+              créer un compte
             </button>
           </div>
         </div>
-      </div>
-      <div
-        class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-12 d-none d-lg-block d-xl-block align-self-center"
-      >
-        <img src="/images/Login-image.jpg" alt="" class="w-100 h-100" />
-      </div>
-    </div>
-    <div v-if="store.state.create_new_account" class="row">
-      <div
-        class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-12 align-self-center"
-      >
-        <div class="Welcome justify-content-center text-center my-5">
-          Create New account!
-        </div>
-        <div
-          class="justify-content-center text-center d-flex align-items-center my-3"
-        >
-          <span class="px-2">name </span>
-          <input
-            class="form-control max-50 ml-auto"
-            v-model="store.state.new_user.name"
-            type="text"
-          />
-        </div>
-        <div
-          class="justify-content-center text-center d-flex align-items-center my-3"
-        >
-          <span class="px-2">Email </span>
-          <input
-            class="form-control max-50 ml-auto"
-            v-model="store.state.new_user.email"
-            type="email"
-          />
-        </div>
-        <div
-          class="justify-content-center text-center d-flex align-items-center my-3"
-        >
-          <span class="px-2">Password </span>
-          <input
-            class="form-control max-50 ml-auto"
-            v-model="store.state.new_user.password"
-            type="password"
-          />
-        </div>
-        <div
-          class="justify-content-center text-center d-flex align-items-center my-3"
-        >
-          <span class="px-2"> Confirm Password </span>
-          <input
-            class="form-control max-50 ml-auto"
-            v-model="store.state.new_user.confirm_password"
-            type="password"
-          />
-        </div>
-        <div class="d-flex justify-content-between">
-          <div class="connect">
-            <span
-              class="px-3 mx-3 btn btn-info"
+          <!-- inscription form -->
+        <div v-else>
+           <div class="mt-8">
+            <span class="font-bold text-blue-900 uppercase">inscrivez-vous</span>
+          </div>
+             <div class="mt-3">
+            <input
+              type="text"
+              class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
+              placeholder="nom"
+                v-model="store.state.new_user.name"
+            />
+          </div>
+             <div class="mt-3">
+            <input
+              type="text"
+              class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
+              placeholder="email"
+              v-model="store.state.new_user.email"            />
+          </div>
+            <div class="mt-3">
+            <input
+              type="password"
+              class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
+              placeholder="Mot de pass"
+              v-model="store.state.new_user.password"/>
+          </div>
+           <div class="mt-3">
+            <input
+              type="password"
+              class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
+              placeholder="confermer le Mot de pass"
+              v-model="store.state.new_user.confirm_password"/>
+          </div>
+            <div>
+            <button
+              class="bg-blue-600 text-white font-bold border-blue-600 border-opacity-20 py-1 px-10 mt-7 rounded-xl hover:bg-indigo-800 transition ease-in-out transform hover:scale-105"
+              @click.prevent="store.methodes.registerNewUser"
+            >
+              créer un compte
+            </button>
+            <button
+              class="block text-blue-700 py-1 px-10 mt-3 transition ease-in-out transform hover:scale-105 hover:scale-x-110"
               @click="store.methodes.backToLogin"
             >
-              back to login
-            </span>
-            <button
-              @click.prevent="store.methodes.registerNewUser"
-              class="btn btn-primary float-right"
-            >
-              create account
+              retour connexion
             </button>
           </div>
         </div>
-      </div>
-      <div
-        class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-12 d-none d-lg-block d-xl-block align-self-center"
-      >
-        <img src="/images/Login-image.jpg" alt="" class="w-100 h-100" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { inject, watch, watchEffect } from "vue";
+import { inject, ref, watch, watchEffect } from "vue";
 import { useRouter } from "vue-router";
 export default {
-  
   setup() {
     const store = inject("store");
     const router = useRouter();
+    let alert= ref(null)
     let a = store.state.userconected;
     watch(a, () => {
       if (store.state.userconected) {
@@ -193,6 +164,9 @@ export default {
         router.push({ name: "Userside" });
       }
     });
+    watch(store.state.new_user.register_user_is_valide,()=>{
+        console.log('store.state.new_user.register_user_is_valide = ' ,store.state.new_user.register_user_is_valide)
+    })
     watchEffect(() => {
       if (store.state.userconected) {
         router.push({ name: "Userside" });
@@ -201,12 +175,18 @@ export default {
       }
     });
 
-    return { store };
+    return { store ,alert};
   },
 };
 </script>
 
 <style>
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
 .Welcome {
   font-size: xxx-large;
   font-family: cursive;
@@ -221,5 +201,8 @@ export default {
 }
 .max-50 {
   max-width: 50%;
+}
+.delete-style-for-focus-visible:focus-visible {
+  outline: 0px dashed rgba(255, 255, 255, 0);
 }
 </style>

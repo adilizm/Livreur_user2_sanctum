@@ -152,7 +152,6 @@ export default {
 .add-new-order {
     padding: 20px;
     border-radius: 100%;
-    top: 77vh;
     left: 80vw;
 }
 .add-new-order > .btn {

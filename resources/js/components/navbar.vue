@@ -1,40 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand pl-3 d-flex justify-content-center text-center" href="#">
-      <img class=" align-self-center mx-2" src="/images/logo.png" width="50" height="50" alt="" /> <span style="font-weight: 900;
-    font-family: monospace;
-    font-variant: all-small-caps;
-    font-size: 30px;">Livreur-User</span>
+  <nav class=" bg-gray-50 shadow-md z-10 flex justify-between">
+    <a class="navbar-brand pl-3 d-flex justify-content-center text-center items-center" href="#">
+      <img class=" align-middle mx-2" src="/images/logo.png" width="50" height="50" alt="" /> 
+      <span class=" capitalize text-xl text-blue-500 font-bold" style=" font-family:Goblin One">Livraison</span>
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div v-if="!store.state.the_user" class="collapse navbar-collapse form-inline" id="navbarNav">
-      <ul class="navbar-nav navnav">
-        <li class="nav-item active">
-          <a class="nav-link" @click="store.methodes.logout">
-            Logout <span class="sr-only">(current)</span></a
-          >
-        </li>
-      </ul>
-    </div>
-    <div v-if="store.state.userconected || store.state.livreurconected" class="collapse navbar-collapse form-inline" id="navbarNav">
-      <ul class="navbar-nav navnav">
-        <li class="nav-item active">
-          <a class="nav-link" @click="store.methodes.logout">
-            Logout <span class="sr-only">(current)</span></a
-          >
-        </li>
-      </ul>
-    </div>
+   <div v-if="store.state.userconected || store.state.livreurconected"  @click="store.methodes.logout" class="mr-3 cursor-pointer  justify-center items-center hover:text-gray-900   flex font-medium  transform hover:-translate-x-4 transition ease-in-out"> <span>Logout</span> <span><svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+</svg></span> </div>
   </nav>
 </template>
 

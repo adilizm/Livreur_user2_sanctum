@@ -110,7 +110,7 @@ const methodes = {
             console.log("this is not a valid user");
         }
     },
-    login() {
+    async login() {
         state.new_user.register_user_is_valide = true;
         var email_validation = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
         if (!email_validation.test(state.user.email)) {
@@ -123,7 +123,8 @@ const methodes = {
                 "content-type": "application/json",
             },
         };
-
+        console.log('user = ',state.user)
+        await axios.get('/api/gg').then(res=>console.log(res)) // initialise to avoid the bug
         axios
             .post("api/login", state.user, config)
             .then((res) => {
@@ -280,6 +281,7 @@ const methodes = {
             .catch((error) => {});
     },
     livred(order_id) {
+
         const config = {
             headers: {
                 "Authorization": state.the_user['token'],
@@ -298,6 +300,20 @@ const methodes = {
             })
             .catch((error) => {});
     },
+    deleteCategory(category_id){
+        const config = {
+            headers: {
+                "Authorization": state.the_user['token'],
+            },
+        };
+        let link = "api/deleteCategory/".concat(category_id);
+        axios
+            .get(link,config)
+            .then((res) => {
+                methodes.getCategoreis();
+            })
+            .catch((error) => {});
+    }
 };
 
 export default {

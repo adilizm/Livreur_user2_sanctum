@@ -49,7 +49,7 @@ class CategoreisController extends Controller
          $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'image' => 'required|mimes:jpg,jpeg,png,|max:2048'
+            'image' => 'bail|mimes:png,jpg|required'
         ]); 
          // cteate new empty Model 
         $category = new Category();
@@ -65,5 +65,11 @@ class CategoreisController extends Controller
         $category->save(); 
         // returne category saved if all is done     
         return $request;
+    }
+    public function delete($id){
+        $category = Category::FindOrFail($id);
+        unlink( substr($category->image_url,1)); // i use substr to remove the / in the image_url or this will returne error 500 (server error)  
+        $category->delete();
+        return 'deleted';
     }
 }

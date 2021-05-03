@@ -20,6 +20,7 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body class="">
        <div id="app"></div>

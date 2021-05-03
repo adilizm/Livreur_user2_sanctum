@@ -40,5 +40,6 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::get('/CurrentUserOrders/{id}', [OrderController::class, 'GetUserOrders']);
     Route::get('/allOrders', [OrderController::class, 'allOrders']);
     Route::get('/orderlivre/{id}', [OrderController::class, 'orderlivre']);
+    Route::get('/deleteCategory/{id}', [CategoreisController::class, 'delete']);
 });
 

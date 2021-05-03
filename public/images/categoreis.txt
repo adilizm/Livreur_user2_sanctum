@@ -1,38 +1,36 @@
 <template>
-  <div class=" grid md:grid-cols-2 lg:grid-cols-3 m-2 justify-items-center">
-    <div
-      class=" bg-white rounded-md overflow-hidden shadow-sm my-2 relative"
-      v-for="category in store.state.categoreis"
-      :key="category.id"
-    >
-      <img
-        class=""
-        :src="category.image_url"
-        :alt="category.name"
-      />
-      <div class=" px-5">
-        <span class=" font-bold text-gray-500 text-sm">{{ category.category_name }}</span>
-        <span class=" block text-gray-500 text-sm">{{ category.category_description }}</span>
-      </div>
-      <div @click="store.methodes.deleteCategory(category.id)" class=" absolute text-red-500 top-2.5 right-3 transform hover:scale-110 transition ease-in-out cursor-pointer hover:bg-white rounded-md"><svg class=" h-6 " xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-</svg></div>
-    </div>
-   
-  
-</div>
+  <div class="container">
+    <table id="categories">
+      <tr>
+        <th>name</th>
+        <th>description</th>
+        <th>image</th>
+      </tr>
+
+      <tr v-for="category in store.state.categoreis" :key="category.id">
+        <td>{{ category.category_name }}</td>
+        <td>{{ category.category_description }}</td>
+        <td>
+          <img
+            :src="category.image_url"
+            width="60"
+            height="60"
+            :alt="category.name"
+          />
+        </td>
+      </tr>
+
       <!-- Button trigger modal -->
-      <div class="flex justify-center text-center ">
       <button
         type="button"
-        class=" bg-blue-400 py-4 px-5 font-bold text-lg rounded-lg cursor-pointer hover:bg-blue-600 text-white mt-2 mb-6"
+        class="btn btn-primary mt-2"
         data-toggle="modal"
         data-target="#exampleModal"
       >
         Ajouter Catégorie
       </button>
+    </table>
   </div>
-  
   <!-- Modal new category -->
   <div
     class="modal fade"

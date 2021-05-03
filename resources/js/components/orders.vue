@@ -17,20 +17,20 @@
                 TOUT
             </button>
         </div>
-        <table id="categories">
+        <table id="" class=" m-auto mb-8"> 
             <tr>
-                <th>name</th>
-                <th>description</th>
-                <th>ordre par</th>
-                <th>date</th>
-                <th>statu</th>
+                <th class="py-1 px-2 bg-green-600 border-green-600 border-l-2  text-white uppercase font-bold text-center text-sm" >name</th>
+                <th class="py-1 px-2 bg-green-600  text-white uppercase font-bold text-center text-sm" >description</th>
+                <th class="py-1 px-2 bg-green-600  text-white uppercase font-bold text-center text-sm" >ordre par</th>
+                <th class="py-1 px-2 bg-green-600  text-white uppercase font-bold text-center text-sm" >date</th>
+                <th class="py-1 px-2 bg-green-600 border-green-600 border-r-2  text-white uppercase font-bold text-center text-sm" >statu</th>
             </tr>
-            <tr v-for="order in store.state.all_orders" :key="order[0].id">
-                <td>{{ order[0].name }}</td>
-                <td>{{ order[0].description }}</td>
-                <td>{{ order[1][0].name }}</td>
-                <td>{{ order[0].created_at }}</td>
-                <td>
+            <tr class="py-3 text-center border-b-2 border-green-600 odd:bg-red-300" v-for="order in store.state.all_orders" :key="order[0].id">
+                <td class=" border-green-600 border-l-2">{{ order[0].name }}</td>
+                <td class=" border-green-600 border-l-2">{{ order[0].description }}</td>
+                <td class=" border-green-600 border-l-2">{{ order[1][0].name }}</td>
+                <td class=" border-green-600 border-l-2">{{ order[0].created_at }}</td>
+                <td class=" border-green-600 border-l-2 border-r-2 ">
                     <button
                         v-if="order[0].statu == 'new'"
                         @click="store.methodes.livred(order[0].id)"
