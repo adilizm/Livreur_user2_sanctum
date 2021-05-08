@@ -8,8 +8,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\CategoreisController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ErrorAndSuccesController;
-
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +40,6 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::get('/allOrders', [OrderController::class, 'allOrders']);
     Route::get('/orderlivre/{id}', [OrderController::class, 'orderlivre']);
     Route::get('/deleteCategory/{id}', [CategoreisController::class, 'delete']);
+    Route::post('/update_Profile_image', [Controller::class, 'update_user_profile']);
 });
 

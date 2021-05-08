@@ -38,7 +38,7 @@
       <!-- div image left side -->
       <div class="text-center text-gray-900 font-bold m-8 hidden md:block">
         <!-- image login -->
-        <img src="/images/login.png" alt="login mage" />
+        <img src="/assests/login.png" alt="login mage" />
         <span class="text-gray-800 font-extrabold"
           >© 2020 Tous droits réservés.</span
         >
@@ -100,7 +100,8 @@
            <div class="mt-8">
             <span class="font-bold text-blue-900 uppercase">inscrivez-vous</span>
           </div>
-             <div class="mt-3">
+              <div class="mt-3 flex">
+            <span class="text-red-600">*</span>
             <input
               type="text"
               class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
@@ -108,26 +109,45 @@
                 v-model="store.state.new_user.name"
             />
           </div>
-             <div class="mt-3">
+             <div class="mt-3 flex">
+            <span class="text-red-600">*</span>
             <input
               type="text"
               class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
               placeholder="email"
               v-model="store.state.new_user.email"            />
           </div>
-            <div class="mt-3">
+             <div class="mt-3 flex">
+            <span class="text-red-600">*</span>
             <input
               type="password"
               class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
               placeholder="Mot de pass"
               v-model="store.state.new_user.password"/>
           </div>
-           <div class="mt-3">
+            <div class="mt-3 flex">
+            <span class="text-red-600">*</span>
             <input
               type="password"
               class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
               placeholder="confermer le Mot de pass"
               v-model="store.state.new_user.confirm_password"/>
+          </div>
+         <div class="mt-3 flex">
+            <span class="text-blue-100">*</span>
+            <input
+              type="text"
+              class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
+              placeholder="Votre address"
+              v-model="store.state.new_user.address"/>
+          </div>
+          <div class="mt-3 flex">
+            <span class="text-blue-100">*</span>
+            <input
+              type="number"
+              class="block border-b-2 border-gray-400 bg-blue-100 focus:border-blue-600 transform focus:scale-125 focus:mt-4 delete-style-for-focus-visible z-0 transition ease-in"
+              placeholder="Votre Num Telephone"
+              v-model="store.state.new_user.tel"/>
           </div>
             <div>
             <button

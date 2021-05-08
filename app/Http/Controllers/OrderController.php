@@ -17,7 +17,7 @@ class OrderController extends Controller
     {
      
         //get all orderes of the user thet has user_id = $id connected user
-        $orders = Order::where('user_id',$id)->get();
+        $orders = Order::with('category')->where('user_id',$id)->get();
         return $orders;
     }
 
@@ -28,7 +28,7 @@ class OrderController extends Controller
      */
     public function allOrders()
     {
-        $orders_with_user=[];
+       /*  $orders_with_user=[];
      $orders=Order::orderBy('created_at')->get();
  
         foreach($orders as $order){
@@ -39,7 +39,11 @@ class OrderController extends Controller
             array_push($orders_with_user,$both); 
             
         }  
-        return $orders_with_user;
+        return $orders_with_user; */
+
+       
+        $orders=Order::with(['user','category'])->orderBy('created_at')->get();
+           return $orders;
     }
 
     /**

@@ -20,6 +20,7 @@ class AuthController  extends ErrorAndSuccesController
             $success['name'] =  $authUser->name;
             $success['Role'] =  $authUser->Role;
             $success['id'] =  $authUser->id;
+            $success['profile_img'] =  $authUser->profile_img;
            
    
             return $this->sendResponse($success, 'User signed in');
@@ -31,13 +32,15 @@ class AuthController  extends ErrorAndSuccesController
 
     public function signup(Request $request)
     {
-    
+       
          $request['Role']='cliente';
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
+            'address' => 'required|string|min:10|max:120',
+            'tel' => 'required|min:10|numeric',
         ]);
         if($validator->fails()){
             return $this->sendError('Error validation', $validator->errors());       

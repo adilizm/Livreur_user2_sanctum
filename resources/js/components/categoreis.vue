@@ -11,7 +11,7 @@
         :alt="category.name"
       />
       <div class=" px-5">
-        <span class=" font-bold text-gray-500 text-sm">{{ category.category_name }}</span>
+        <span class=" font-bold text-gray-500 text-sm">{{ category.category_name }} <strong class=" text-yellow-500"> ({{category.price}} dh)</strong></span>
         <span class=" block text-gray-500 text-sm">{{ category.category_description }}</span>
       </div>
       <div @click="store.methodes.deleteCategory(category.id)" class=" absolute text-red-500 top-2.5 right-3 transform hover:scale-110 transition ease-in-out cursor-pointer hover:bg-white rounded-md"><svg class=" h-6 " xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -27,7 +27,7 @@
         type="button"
         class=" bg-blue-400 py-4 px-5 font-bold text-lg rounded-lg cursor-pointer hover:bg-blue-600 text-white mt-2 mb-6"
         data-toggle="modal"
-        data-target="#exampleModal"
+        data-target="#category_modal"
       >
         Ajouter Catégorie
       </button>
@@ -36,15 +36,15 @@
   <!-- Modal new category -->
   <div
     class="modal fade"
-    id="exampleModal"
+    id="category_modal"
     tabindex="-1"
-    aria-labelledby="exampleModalLabel"
+    aria-labelledby="category_modalLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Noveau categorie</h5>
+          <h5 class="modal-title" id="category_modalLabel">Noveau categorie</h5>
           <button
             type="button"
             class="close"
@@ -62,7 +62,7 @@
               enctype="multipart/form-data"
             >
               <div class="form-group">
-                <label for="formGroupExampleInput">name</label>
+                <label for="formGroupExampleInput">nome</label>
                 <input
                   type="text"
                   class="form-control"
@@ -81,21 +81,37 @@
                   placeholder="description"
                 />
               </div>
+                 <div class="form-group">
+                <label for="formGroupExampleInput3">prix</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="formGroupExampleInput3"
+                  v-model="store.state.new_category.price"
+                  placeholder="price"
+                />
+              </div>
               <div class="form-group" ref="input_image">
                 <label for="formGroupExampleInput3">image</label>
-                <input
+                  <div class="input-group mb-3">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="inputGroupFile01"  ref="image"  v-on:change="store.methodes.onChange" aria-describedby="inputGroupFileAddon01">
+                      <label class="custom-file-label" ref="image_name" for="inputGroupFile01"></label>
+                    </div>
+                  </div>
+                <!-- <input
                   type="file"
                   class="form-control"
                   v-on:change="store.methodes.onChange"
                   id="formGroupExampleInput3"
                   ref="image"
-                />
+                /> -->
               </div>
               <div class="d-flex justify-content-center">
                 <img
                   v-if="store.state.new_category.image"
                   style="max-width: 300px"
-                  id="picture"
+                  id="category_picture"
                   src=""
                   alt=""
                 />
@@ -134,14 +150,18 @@ export default {
     const image = ref(null);
     const store = inject("store");
     const input_image = ref(null)
+    let image_name = ref('Choose Category image')
 const gg = ()=>{
   console.log('Emm nice');
   store.methodes.saveNewCategory()
-  console.log('Emm nice2');
+   image_name.value.textContent=" Choose an image";
 }
 
     onMounted(() => {
       store.methodes.getCategoreis();
+
+      console.log('image_name = ',image_name.value);
+      image_name.value.textContent=" Choose an image";
     });
 
     watch(
@@ -151,15 +171,16 @@ const gg = ()=>{
         console.log("wata rak tged 3liha ghi4 khdem");
       }
     );
-    //this is to show image before sent to database
 
     function readURL(image) {
       if (image.value.files && image.value.files[0] && store.state.new_category.image) {
         var reader = new FileReader();
         reader.onload = function (e) {
           document
-            .getElementById("picture")
+            .getElementById("category_picture")
             .setAttribute("src", e.target.result);
+            console.log("e.target.result = ",e.target.result);
+            image_name.value.textContent = image.value.value;
         };
         reader.readAsDataURL(image.value.files[0]); // convert to base64 string
       }else{
@@ -167,7 +188,7 @@ const gg = ()=>{
         console.log('this is the file',image)
       }
     }
-    return { store, image ,gg,input_image};
+    return { store, image ,gg,input_image,image_name};
   },
 };
 </script>

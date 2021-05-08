@@ -9,5 +9,10 @@ class Category extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable=['category_name','image_url','category_description'];
+    protected $fillable=['category_name','image_url','category_description','price'];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

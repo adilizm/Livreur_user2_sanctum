@@ -15,12 +15,16 @@ class RegisterController extends Controller
             'register_user_name' =>'required|min:4', 
             'register_user_email' => 'required|email',
             'register_user_password' => 'required|min:6',
+            'register_user_password' => 'required|min:6',
+            'register_user_password' => 'required|min:6',
         ]);
 
         $user= new User;
         $user->name = $request->register_user_name;
         $user->email = $request->register_user_email;
         $user->Role = 'cliente';
+        $user->address = $request->address;
+        $user->tel = $request->tel;
         $user->password = Hash::make($request->register_user_password);
         $user->save(); 
         return ['saved user', $request->register_user_name];

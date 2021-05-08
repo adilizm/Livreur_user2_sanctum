@@ -45,11 +45,13 @@ class CategoreisController extends Controller
 
     public function store(Request $request)
     { 
+       
           // validate the image and values in request  
          $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'image' => 'bail|mimes:png,jpg|required'
+            'image' => 'bail|mimes:png,jpg|required',
+            'price'=> 'bail|required'
         ]); 
          // cteate new empty Model 
         $category = new Category();
@@ -59,6 +61,7 @@ class CategoreisController extends Controller
         $request->image->move(public_path('images'), $file_path);
         $category->category_name = $request->name;
         $category->category_description = $request->description;
+        $category->price = $request->price;
         //save image path in the model
         $category->image_url = '/images/' . $file_path;
         //save the new model row in database

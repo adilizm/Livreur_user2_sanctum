@@ -5,14 +5,15 @@
           <th>order</th>
           <th>statu</th>
           <th>description</th>
+          <th>Category and prix</th>
           <th>date</th>
         </tr>
         <tr v-for="order in store.state.User_orders" :key="order">
             <td>{{order.name}}</td>
             <td v-if="order.statu=='livre'">complete</td>
             <td v-else>En attent</td>
-            
             <td>{{order.description}}</td>
+            <td>{{order.category.category_name}} - <span class="text-gray-600">prix</span> = {{order.category.price}} dh</td>
             <td>{{order.created_at}}</td>
         </tr>
       </table>
@@ -22,26 +23,26 @@
                 type="button"
                 class="btn btn-primary"
                 data-toggle="modal"
-                data-target="#exampleModal"
+                data-target="#userAddneworderModal"
                 @click="hello"
             ></button>
             <span   data-toggle="modal"
-                data-target="#exampleModal"
+                data-target="#userAddneworderModal"
                  class="plus">+</span>
         </div>
         <!-- modal to add new order-->
         <!-- Modal -->
         <div
             class="modal fade mt-5"
-            id="exampleModal"
+            id="userAddneworderModal"
             tabindex="-1"
-            aria-labelledby="exampleModalLabel"
+            aria-labelledby="userAddneworderModalLabel"
             aria-hidden="true"
         >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
+                        <h5 class="modal-title" id="userAddneworderModalLabel">
                             Ajouter un ordre
                         </h5>
                         <button
@@ -92,7 +93,7 @@
                                     @change="hello"
                                     required
                                 >
-                                    <option v-for="category in store.state.categoreis" :key="category" :value="category.id">{{category.category_name}}</option>
+                                    <option v-for="category in store.state.categoreis" :key="category" :value="category.id">{{category.category_name}} prix : {{category.price}}</option>
                                    
                                 </select>
                             </div>
