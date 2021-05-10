@@ -29,7 +29,7 @@
         data-toggle="modal"
         data-target="#category_modal"
       >
-        Ajouter Catégorie
+        {{  store.methodes.language("add_category") }}
       </button>
   </div>
   
@@ -44,7 +44,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="category_modalLabel">Noveau categorie</h5>
+          <h5 class="modal-title" id="category_modalLabel"> {{  store.methodes.language("new_catigory") }}</h5>
           <button
             type="button"
             class="close"
@@ -62,7 +62,7 @@
               enctype="multipart/form-data"
             >
               <div class="form-group">
-                <label for="formGroupExampleInput">nome</label>
+                <label for="formGroupExampleInput">{{  store.methodes.language("category_name") }}</label>
                 <input
                   type="text"
                   class="form-control"
@@ -72,7 +72,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput2">description</label>
+                <label for="formGroupExampleInput2">{{  store.methodes.language("category_description") }}</label>
                 <input
                   type="text"
                   class="form-control"
@@ -82,7 +82,7 @@
                 />
               </div>
                  <div class="form-group">
-                <label for="formGroupExampleInput3">prix</label>
+                <label for="formGroupExampleInput3">{{  store.methodes.language("category_price") }}</label>
                 <input
                   type="number"
                   class="form-control"
@@ -92,7 +92,7 @@
                 />
               </div>
               <div class="form-group" ref="input_image">
-                <label for="formGroupExampleInput3">image</label>
+                <label for="formGroupExampleInput3">{{  store.methodes.language("category_image") }}</label>
                   <div class="input-group mb-3">
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="inputGroupFile01"  ref="image"  v-on:change="store.methodes.onChange" aria-describedby="inputGroupFileAddon01">
@@ -123,16 +123,15 @@
                   @click.prevent=""
                   data-dismiss="modal"
                 >
-                  Quitter
+                  {{  store.methodes.language("close") }}
                 </button>
                 <button
                   type="button"
                   @click="gg"
                   class="btn btn-success"
                   data-dismiss="modal"
-                 
                 >
-                  Enregistrer
+                  {{  store.methodes.language("new_catigory") }}
                 </button>
               </div>
             </form>
@@ -188,7 +187,14 @@ const gg = ()=>{
         console.log('this is the file',image)
       }
     }
-    return { store, image ,gg,input_image,image_name};
+     function language(key) {
+      if (store.state.language == "ar") {
+        return store.state.ar[key];
+      } else {
+        return store.state.en[key];
+      }
+    }
+    return { store, image ,gg,input_image,image_name,language};
   },
 };
 </script>

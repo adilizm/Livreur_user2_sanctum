@@ -1,19 +1,19 @@
 <template>
-    <div class="container position-relative">
+    <div class="container relative">
       <table id="categories" class="mt-5">
         <tr>
-          <th>order</th>
-          <th>statu</th>
-          <th>description</th>
-          <th>Category and prix</th>
-          <th>date</th>
+          <th> {{  store.methodes.language("order_name") }}</th>
+          <th> {{  store.methodes.language("order_statu") }}</th>
+          <th>            {{  store.methodes.language("order_description") }}</th>
+          <th>{{  store.methodes.language("order_category_and_price") }}</th>
+          <th>{{  store.methodes.language("order_date") }}</th>
         </tr>
         <tr v-for="order in store.state.User_orders" :key="order">
             <td>{{order.name}}</td>
-            <td v-if="order.statu=='livre'">complete</td>
-            <td v-else>En attent</td>
+            <td v-if="order.statu=='livre'">{{  store.methodes.language("completed") }}</td>
+            <td v-else>{{  store.methodes.language("in_progress") }}</td>
             <td>{{order.description}}</td>
-            <td>{{order.category.category_name}} - <span class="text-gray-600">prix</span> = {{order.category.price}} dh</td>
+            <td>{{order.category.category_name}} - <span class="text-gray-600">{{  store.methodes.language("price") }}</span> = {{order.category.price}} {{  store.methodes.language("coin") }}</td>
             <td>{{order.created_at}}</td>
         </tr>
       </table>
@@ -43,7 +43,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="userAddneworderModalLabel">
-                            Ajouter un ordre
+                            {{  store.methodes.language("add_new_order") }}
                         </h5>
                         <button
                             type="button"
@@ -58,7 +58,7 @@
                         <form>
                             <div class="form-group">
                                 <label for="exampleInputorder"
-                                    >ordre name</label
+                                    >{{  store.methodes.language("order_name") }}</label
                                 >
                                 <input
                                     type="text"
@@ -71,7 +71,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputdescription"
-                                    >ordre description</label
+                                    >{{  store.methodes.language("order_description") }}</label
                                 >
                                 <textarea
                                     type="text"
@@ -84,7 +84,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1"
-                                    >selecter la category</label
+                                    >{{  store.methodes.language("select_category") }}</label
                                 >
                                 <select
                                 v-model="store.state.order.category_id"
@@ -93,7 +93,7 @@
                                     @change="hello"
                                     required
                                 >
-                                    <option v-for="category in store.state.categoreis" :key="category" :value="category.id">{{category.category_name}} prix : {{category.price}}</option>
+                                    <option v-for="category in store.state.categoreis" :key="category" :value="category.id">{{category.category_name}} {{  store.methodes.language("price") }} : {{category.price}}</option>
                                    
                                 </select>
                             </div>
@@ -103,10 +103,10 @@
                                     class="btn btn-secondary"
                                     data-dismiss="modal"
                                 >
-                                    Quitter
+                                   {{  store.methodes.language("close") }}
                                 </button>
                                 <button type="button" class="btn btn-primary" @click="store.methodes.createOrder" data-dismiss="modal">
-                                    Envoyer
+                                    {{  store.methodes.language("send") }}
                                 </button>
                             </div>
                         </form>
@@ -144,6 +144,7 @@ export default {
             }
         }, store.state.userconected);
 
+ 
         return { store, hello };
     },
 };

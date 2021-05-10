@@ -21,6 +21,8 @@ class AuthController  extends ErrorAndSuccesController
             $success['Role'] =  $authUser->Role;
             $success['id'] =  $authUser->id;
             $success['profile_img'] =  $authUser->profile_img;
+            $success['tel'] =  $authUser->tel;
+            $success['address'] =  $authUser->address;
            
    
             return $this->sendResponse($success, 'User signed in');

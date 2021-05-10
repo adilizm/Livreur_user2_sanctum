@@ -1,6 +1,6 @@
 <template>
         <navbar />
-        <router-view />
+        <router-view :key="store.state.language" />
      
  
 </template>
@@ -14,6 +14,7 @@ export default {
     components: { navbar },
     setup(){
         provide('store',store)
+        return { store }
     }
 };
 </script>

@@ -2,13 +2,13 @@
   <div class="container">
     <div class="justify-content-center d-flex">
       <button class="btn btn-sm btn-primary px-2 my-3 mx-2" @click="Noveau">
-        EN ATTEND
+        {{  store.methodes.language("new") }}
       </button>
       <button class="btn btn-sm btn-primary px-2 my-3 mx-2" @click="livre">
-        LIVRE
+          {{  store.methodes.language("delivred") }}
       </button>
       <button class="btn btn-sm btn-primary px-2 my-3 mx-2" @click="Tout">
-        TOUT
+           {{  store.methodes.language("all") }}
       </button>
     </div>
     <div class="w-full  overflow-x-scroll md:overflow-visible lg:overflow-visible ">
@@ -17,32 +17,33 @@
           <th
             class="py-1 px-2 bg-green-600 border-green-600 border-l-2 text-white uppercase font-bold text-center text-sm"
           >
-            name
+            {{  store.methodes.language("order_name") }}
           </th>
           <th
             class="py-1 px-2 bg-green-600 text-white uppercase font-bold text-center text-sm"
           >
-            description
+            {{  store.methodes.language("order_description") }}
           </th>
           <th
             class="py-1 px-2 bg-green-600 text-white uppercase font-bold text-center text-sm"
           >
-            category et prix
+            {{  store.methodes.language("order_category_and_price") }}
           </th>
           <th
             class="py-1 px-2 bg-green-600 text-white uppercase font-bold text-center text-sm"
           >
-            ordre par
+              {{  store.methodes.language("order_order_by") }}
           </th>
           <th
             class="py-1 px-2 bg-green-600 text-white uppercase font-bold text-center text-sm"
           >
-            date
+             {{  store.methodes.language("order_date") }}
           </th>
           <th
             class="py-1 px-2 bg-green-600 border-green-600 border-r-2 text-white uppercase font-bold text-center text-sm"
           >
-            statu
+                         {{  store.methodes.language("order_statu") }}
+
           </th>
         </tr>
         <tr
@@ -53,7 +54,7 @@
           <td class="border-green-600 border-l-2">{{ order.name }}</td>
           <td class="border-green-600 border-l-2">{{ order.description }}</td>
           <td class="border-green-600 border-l-2">
-            {{ order.category.category_name }} - prix:
+            {{ order.category.category_name }} -  {{  store.methodes.language("price") }}:
             {{ order.category.price }}
           </td>
           <td class="border-green-600 border-l-2">
@@ -86,7 +87,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title font-bold" id="exampleModalLabel">
-                    Information sur {{ order.user.name }}
+                    {{  store.methodes.language("more_info_about") }} {{ order.user.name }}
                   </h5>
                   <button
                     type="button"
@@ -100,19 +101,19 @@
                 <div class="modal-body">
                   <table class="text-justify">
                     <tr>
-                      <td class="font-bold text-gray-900">Nom :</td>
+                      <td class="font-bold text-gray-900"> {{  store.methodes.language("name") }} :</td>
                       <td>{{ order.user.name }}</td>
                     </tr>
                     <tr>
-                      <td class="font-bold text-gray-900">Address :</td>
+                      <td class="font-bold text-gray-900">{{  store.methodes.language("address") }} :</td>
                       <td>{{ order.user.address }}</td>
                     </tr>
                     <tr>
-                      <td class="font-bold text-gray-900">Tel :</td>
+                      <td class="font-bold text-gray-900">{{  store.methodes.language("phone") }} :</td>
                       <td>{{ order.user.tel }}</td>
                     </tr>
                     <tr>
-                      <td class="font-bold text-gray-900">Email :</td>
+                      <td class="font-bold text-gray-900">{{  store.methodes.language("email") }} :</td>
                       <td>{{ order.user.email }}</td>
                     </tr>
                   </table>
@@ -123,7 +124,7 @@
                     class="btn btn-secondary"
                     data-dismiss="modal"
                   >
-                    Quitter
+                    {{  store.methodes.language("close") }}
                   </button>
                 </div>
               </div>
@@ -161,6 +162,7 @@ export default {
     const Tout = () => {
       store.state.all_orders = store.state.all_orders_tool;
     };
+     
     return { store, Noveau, livre, Tout, orders };
   },
 };

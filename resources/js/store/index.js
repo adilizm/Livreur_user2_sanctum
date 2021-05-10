@@ -1,7 +1,15 @@
 import { reactive } from "@vue/reactivity";
+import ar from "../languages/ar.json"; 
+import en from "../languages/en.json";
+import fr from "../languages/fr.json";
 
 const state = reactive({
     the_user: [],
+    active_dark_mode:false,
+    en:en,
+    ar:ar,
+    fr:fr,
+    language:'en',
     create_new_account: false,
     login_info: true,
     userconected: false,
@@ -148,6 +156,8 @@ const methodes = {
                 state.the_user["Role"] = res.data.data.Role;
                 state.the_user["id"] = res.data.data.id;
                 state.the_user["profile_img"] = res.data.data.profile_img;
+                state.the_user["tel"] = res.data.data.tel;
+                state.the_user["address"] = res.data.data.address;
                 console.log("the user in store is  = ", state.the_user);
                 if (res.data.data.Role === "cliente") {
                     state.userconected = true;
@@ -355,7 +365,27 @@ saveImageprofile() {
                 methodes.getCategoreis();
             })
             .catch((error) => {});
-    }
+    },
+     language(key) {
+        if (state.language == "ar") {
+          return state.ar[key];
+        } else if(state.language == "en") {
+          return state.en[key];
+        } else  {
+            return state.fr[key];
+          }
+
+        
+      },
+      changeMode(){
+        state.active_dark_mode = !state.active_dark_mode;
+        if(state.active_dark_mode){
+            document.getElementById("body").classList.add("dark_mode");
+        }else{
+            document.getElementById("body").classList.remove("dark_mode");
+        }
+      }
+    
 };
 
 export default {
